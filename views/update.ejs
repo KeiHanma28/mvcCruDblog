@@ -1,0 +1,42 @@
+<html lang="en">
+  <%- include("./partials/head.ejs") %>
+
+  <body>
+    <%- include("./partials/nav.ejs") %>
+
+    <div class="create-blog content">
+      <h1>Blog Update</h1>
+      <form action="/update" method="post">
+        <% if(result.length>0) { result.forEach(e=>{ %>
+        <input type="hidden" value="<%=e.id%>" name="bid" />
+        <label for="title">Blog title:</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          required
+          value="<%=e.title %> "
+        />
+
+        <label for="snippet">Blog snippet:</label>
+        <input
+          type="text"
+          id="snippet"
+          name="snippet"
+          required
+          value="<%= e.snippet  %> "
+        />
+
+        <label for="content">Blog body:</label>
+        <textarea id="content" name="content" required>
+<%= e.content  %> </textarea
+        >
+        <% })} %>
+
+        <button>Submit</button>
+      </form>
+    </div>
+
+    <%- include("./partials/footer.ejs") %>
+  </body>
+</html>
